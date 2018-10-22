@@ -1,2 +1,4 @@
 关于沙漠地表渲染的细节
 Data->Terrain->Detail->a5_base/a5_base2/a5_base3
+修改传送门提示语句
+data->world->num.svmap对应的num.txt 位传送门提示语句（文件大小大于目标文件会在游戏里显示乱码）
