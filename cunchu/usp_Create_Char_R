@@ -1,0 +1,151 @@
+/*****逆天神泣 2018.10
+/****** 개체: 저장 프로시저 dbo.usp_Create_Char_R    스크립트 날짜: 2006-05-30 오후 12:53:23 ******/
+
+CREATE                                                                          Proc usp_Create_Char_R
+
+@ServerID tinyint,
+@UserID varchar(12),
+@UserUID int,
+@CharName varchar(50) ,
+
+@Slot Tinyint,
+@Family Tinyint,
+@Grow Tinyint,
+@Hair Tinyint,
+@Face Tinyint,
+@Size Tinyint,
+@Job Tinyint,
+@Sex Tinyint,
+@Level Smallint,
+@Statpoint Smallint,
+@Skillpoint Smallint,
+@Str Smallint,
+@Dex Smallint,
+@Rec Smallint,
+@Int Smallint,
+@Luc Smallint,
+@Wis Smallint,
+@Hp Smallint,
+@Mp Smallint,
+@Sp Smallint,
+@Map Smallint,
+@Dir Smallint,
+@Exp Int,
+@Money Int,
+@Posx Real,
+@Posy Real,
+@Posz Real,
+@Hg Smallint,
+@Vg Smallint,
+@Cg Tinyint,
+@Og Tinyint,
+@Ig Tinyint,
+
+
+/* 여기까지 인자값 주어져야 함 */
+
+/* SP 내부 참조용 변수 */
+
+@CharID int = 0,
+@NameCnt tinyint = 0
+
+AS
+
+SET NOCOUNT ON
+
+DECLARE @Ret int
+
+SET @CharName = LTRIM(RTRIM(@CharName))
+SET @Level =1
+SET @SkillPoint = 9
+SET @statpoint =0
+SET @Money= 1000
+SET @Ret = 0
+---SET @Grow=3
+
+
+
+/****************************执行角色出生地位置****************************************/
+if (@Family = 0 or @Family = 1) 
+	BEGIN
+		set @map=42
+		set @PosX=55
+		set @PosY=1
+		set @Posz=51
+	end
+if (@Family = 2 or @Family = 3) 
+	BEGIN
+		set @map=42
+		set @PosX=55
+		set @PosY=1
+		set @Posz=51
+	end
+/**************************************************************************************/
+
+
+SET @NameCnt = (SELECT ISNULL(COUNT(*),0) FROM Chars WHERE CharName=@CharName AND Del=0)
+
+IF(@NameCnt <> 0)
+BEGIN
+	RETURN -2
+END
+ELSE
+BEGIN
+	IF EXISTS ( SELECT CharID FROM Chars WHERE CharName=@CharName AND Del = 1 AND [Level] >10 AND DeleteDate > DATEADD(dd, -7, GETDATE()) )
+	BEGIN
+		RETURN -2
+	END
+
+	BEGIN TRANSACTION
+
+	INSERT INTO Chars(ServerID,UserID, UserUID, CharName, Slot, Family, Grow, 
+	Hair, Face, [Size], Job, Sex, [Level], StatPoint, SkillPoint, 
+	[Str], Dex, Rec, [Int], Luc, Wis, HP, MP, SP, Map, Dir, [Exp], [Money], 
+	PosX, PosY, Posz, Hg, Vg, Cg, Og, Ig,K1, RenameCnt, RemainTime)
+
+	VALUES(@ServerID,@UserID, @UserUID, @CharName, @Slot, @Family, @Grow, 
+	@Hair, @Face, @Size, @Job, @Sex, @Level, @StatPoint, @SkillPoint, 
+	@Str, @Dex, @Rec, @Int, @Luc, @Wis, @HP, @MP, @SP, @Map, @Dir, @Exp, @Money, 
+	@PosX, @PosY, @Posz, @Hg, @Vg, @Cg, @Og, @Ig, '50000',0, 0)
+
+	IF( @@ERROR=0 )
+	BEGIN
+		COMMIT TRANSACTION
+	END
+	ELSE
+	BEGIN
+		ROLLBACK TRANSACTION
+		RETURN -1
+	END
+
+	SET @CharID = IDENT_CURRENT('Chars')
+END
+
+
+
+/*****************************************************************插入状态**********************************************/
+
+			--插入状态(替身)
+				---INSERT INTO CharApplySkills(CharID,Skillid,SkillLevel,LeftResetTime) VALUES(@CharID,255,2,86400)
+
+			--插入状态(太阳)
+				---INSERT INTO CharApplySkills(CharID,Skillid,SkillLevel,LeftResetTime) VALUES(@CharID,250,1,10800)
+
+			--插入状态(移动加速)
+				---INSERT INTO CharApplySkills(CharID,Skillid,SkillLevel,LeftResetTime) VALUES(@CharID,268,2,10800)
+
+			--插入状态(攻击加速)
+				----INSERT INTO CharApplySkills(CharID,Skillid,SkillLevel,LeftResetTime) VALUES(@CharID,269,1,10800)
+
+			--插入状态(暴击)
+				---INSERT INTO CharApplySkills(CharID,Skillid,SkillLevel,LeftResetTime) VALUES(@CharID,270,1,10800)
+/**********************************************************************************************************************/
+
+INSERT INTO CharApplySkills(charid,skillid,skilllevel,leftresettime)VALUES(@charid,225,1,2591941)
+INSERT INTO CharApplySkills(charid,skillid,skilllevel,leftresettime)VALUES(@charid,227,1,2591941)
+INSERT INTO CharApplySkills(charid,skillid,skilllevel,leftresettime)VALUES(@charid,286,3,2591941)
+
+RETURN @CharID
+
+SET NOCOUNT OFF
+GO
