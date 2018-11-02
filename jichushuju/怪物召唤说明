@@ -1,0 +1,105 @@
+
+
+
+
+---------------------------------------------------------------------------
+-- ∝ MobCreateSet
+-- ∝ MobCreateSet_1, 2, 3.. Numbere in sequence.(number max : 1024)
+-- ∝ MobCreateColumn : (GroupID, Percent)
+-- ∝ MobCreateColumn Line Max : 512
+-- ∝ Enable, Diable MapValue Max : 100
+--------------------------------------------------------------------------
+-- [MobCreateSet_1]
+-- 	[MobCreateColumn] =	
+-- 		(1,10)
+-- 		(2,50)
+-- 		(6,50)
+-- 	[MobCreateEnableMap] = (1,2,3,4,5,6,7,8,9,10,11,12,13)	//召唤怪物所在地图
+-- 
+-- [MobCreateSet_2]
+-- 	[MobCreateColumn] =	
+-- 		(3,10)
+-- 		(4,5550)
+-- 	[MobCreateDiableMap] = (16)
+-- 
+-- [MobCreateSet_3]
+-- 	[MobCreateColumn] =	
+-- 		(6,1)
+-- 
+---------------------------------------------------------------------------
+
+
+[MobCreateSet_1] 
+	[MobCreateColumn] =
+	  (1,100)
+  [MobCreateEnableMap] = (18)		//召唤怪物所在地图
+
+
+[MobCreateSet_2] 
+	[MobCreateColumn] =
+	  (2,100)
+  [MobCreateEnableMap] = (30)
+
+
+[MobCreateSet_3] 
+	[MobCreateColumn] =
+	  (3,100)
+  [MobCreateEnableMap] = (60)
+  
+
+[MobCreateSet_4]
+	[MobCreateColumn] =
+	  (2,60)
+	  (3,120)
+  [MobCreateDiableMap] = (1,2)
+
+
+[MobCreateSet_5]
+	[MobCreateColumn] =
+ 	  (1,10)
+	  (4,25)
+ 	  (5,50)
+  
+  
+  
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+--
+-- ∝ MobCreateGroup
+-- ∝ MobCreateGroup_1, 2, 3.. Number in sequence.(number max : 512)
+-- ∝ Mob Max Count : 512
+-- ∝ SetMobMinMax, SetMobRange '~' Careful!!!
+--------------------------------------------------------------------------
+-- [MobCreateGroup_1]
+-- 	[SetMobMinMax] = (3 ~ 10 )
+-- 	[SetMobFix] = (240,233,555)
+-- 	[SetMobRange] = (100 ~ 200)
+--
+--------------------------------------------------------------------------
+
+
+[MobCreateGroup_1]				//对应数据库reqvg 召唤组
+  [SetMobMinMax] = (1 ~ 1)
+	[SetMobFix] = (1)			//召唤 代码
+
+
+[MobCreateGroup_2]
+  [SetMobMinMax] = (1 ~ 1)
+	[SetMobFix] = (2)
+
+
+[MobCreateGroup_3]
+  [SetMobMinMax] = (1 ~ 1)
+	[SetMobFix] = (3)
+	
+
+[MobCreateGroup_4]
+  [SetMobMinMax] = (1 ~ 5)
+  [SetMobRange] = (1730 ~ 1732)
+  [SetMobRange] = (1894 ~ 1899)
+	[SetMobFix] = (1875,1876,1877)
+
+
+[MobCreateGroup_5] 
+  [SetMobMinMax] = (3 ~ 4)
+	[SetMobFix] = (1770,1771,1772)
