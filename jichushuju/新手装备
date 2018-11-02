@@ -2,6 +2,32 @@ update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='17020'
 update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='18020'
 update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='20020'
 update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='21020'
+
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='17105'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='18105'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='20105'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='21105'
+
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='17190'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='18190'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='20190'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='21190'
+
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='32020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='33020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='35020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='36020'
+
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='32105'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='33105'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='35105'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='36105'
+
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='32190'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='33190'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='35190'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='36190'
+
 /***************************************
 /**************战士骑士新手装备*****************
 /***************************************
