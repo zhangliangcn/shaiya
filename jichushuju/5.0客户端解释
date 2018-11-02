@@ -1,0 +1,511 @@
+神泣安装目录文件解释
+	
+	神泣公告内容：神泣安装目录\notice.txt
+
+	
+	
+
+关键词：
+		hair		头发
+		face		脸
+		torso		上身
+		
+		
+客户端报错：
+		选择角色卡死		data\Character目录下文件不兼容
+游戏加载顺序
+	操作			读取顺序			读取文件
+	登陆开始游戏		角色技能			data\Character\Skill.SData
+	开始游戏		角色装备、外观			data\Character\
+	
+文件格式	
+		*.3DO	物品模型
+		*.3DC	装备模型
+		*.3DE	
+	
+
+
+客户端资源包 data.saf	解压客户端工具 超级资源解包.exe
+
+			游戏客户端主目录
+
+	屏蔽字符						data\filter.txt
+	系统信息，地图名称					data\sysmsg-uni.txt
+
+	5.0 商城列表						data\Cash.SData
+	13.0 商城列表						Data\BinarySData\DBItemSellData.SData
+	13.0 商城列表名称&说明					Data\BinarySData\DBItemSellText_CHN.SData
+	
+	系统提示						sysmsg-uni.txt
+								变量：
+									<b>		道具名
+									<t>		怪物名
+									<v>		数值(伤害、倒计时)
+									<p>		角色名
+									<s>		技能名称
+									<i>		物品名称
+									<hp>		体力
+									\n		换行
+									{c0}		字体颜色紫色
+									{c1}		字体颜色淡蓝
+									{c2}		字体颜色绿色
+									{c3}		字体颜色黄色
+									{c4}		字体颜色红色
+									{c5}		字体颜色灰色
+									{c6}		字体颜色白色
+									{/c}		字体颜色结束
+									
+	装备&技能						data\Character
+		5.0 技能表					data\Character\Skill.SData
+		5.0 状态表					data\Character\KillStatus.SData
+		
+		13.0 技能表					Data\BinarySData\DBSkillData.SData
+		13.0 技能表 名称 &  说明			Data\BinarySData\DBSkillText_CHN.SData
+		13.0 状态表					Data\BinarySData\KillStatus.SData
+		5.0 动作					data\Character\*_action.alt		
+	
+	披风							Data\cloak
+		披风模型						Data\cloak\Character
+			野蛮人披风						Data\cloak\Character\DeathEater
+				野蛮人披风模型						Data\cloak\Character\DeathEater\3DC
+					野蛮人披风-披肩模型						Data\cloak\Character\DeathEater\3DC\*.3DC
+					野蛮人披风-肩膀模型						Data\cloak\Character\DeathEater\3DC\Static
+				野蛮人披风索引						Data\cloak\Character\DeathEater\*.pc
+				
+		披风贴图						cloak\ClothTexture
+	
+	光效 							Data\Effect
+									Data\Effect\levelup.EFT			升级效果
+									Data\Effect\Select_A.EFT		选择光明阵营效果
+									Data\Effect\Select_B.EFT		选择愤怒阵营效果
+									data\Effect\Monster.EFT			5.0 怪物光效 
+						NPC光效		data\Effect\eventeffect.seff	
+	
+	建筑物							Data\Entity
+		贴图							Data\Entity\Texture
+		建筑物模型						Data\Entity\Building
+		建筑物光效						Data\Entity\effect
+		植物模型						Data\Entity\Grass
+		梯子模型						Data\Entity\Object
+		装饰模型						Data\Entity\Shape
+		树模型							Data\Entity\Tree
+		
+		
+	
+	游戏界面						Data\interface
+		小地图							Data\interface\MiniMap
+		商城图标						Data\interface\icon\icon_somo2.DDS
+		9.0		技能图标1						Data\interface\icon\icon_skill.tga
+		技能图标2						Data\interface\icon\icon_skill2.dds
+		技能图标3						Data\interface\icon\icon_skill3.dds
+
+	物品							Data\Item
+		物品模型索引						Data\Item\*.ITM
+		5.0 物品表							Data\Item\Item.SData
+		13.0 物品表							Data\BinarySData\DBItemData.SData
+		13.0 物品表 名称&说明						Data\BinarySData\DBItemText_CHN.SData
+		13.0 套装效果						Data\Item\SetItem.SData
+		13.0 套装效果物品列表					Data\BinarySData\DBSetItemData.SData
+		13.0 套装效果物品列表 名称 & 说明 			Data\BinarySData\DBSetItemText_CHN.SData
+		掉落物品模型						Data\Item\3DO\drop_item*.3DO
+		掉落物品贴图						Data\Item\3DO\drop_item*.DDS
+		
+	
+	怪物							Data\Monster
+		5.0 怪物表							Data\Monster\Monster.SData
+		5.0 NPC技能表							Data\Monster\NpcSkill.SData
+		5.0 怪物模型							Data\Monster\monster.MON
+		13.0 怪物表							Data\BinarySData\DBMonsterData.SData
+		13.0 怪物表名称 & 说明						Data\BinarySData\DBMonsterText_CHN.SData
+		13.0 怪物技能表							Data\BinarySData\DBNpcSkillData.SData
+		13.0 怪物技能表	名称 & 说明 					Data\BinarySData\DDBNpcSkillText_CHN.SData
+	
+	NPC							Data\Npc
+	NPC							Data\strip
+	
+	天空							Data\Sky
+	
+	声音							Data\Sound
+	
+	地面							Data\Terrain
+	
+	坐骑							Data\Vehicle
+	
+	地图							Data\world
+	
+二级路径
+	
+	野蛮人(斗士、护卫、猎人)				data\Character\DeathEater
+	
+
+游戏关键文件路径
+	
+	商城							Data\Cash.SData
+	人物技能						data\Character\Skill.SData	对应数据库ps_gamedefs.dbo.skills表中第一部分
+	物品							data\item\Item.SData
+	怪物							data\Monster\Monster.SData
+	NPC							Data\Npc\NpcQuest.SData
+	怪物技能						data\Monster\NpcSkill.SData
+
+	斗士 & 猎人装备		data\Character\DeathEater
+	斗士 & 猎人装备模型	data\Character\DeathEater\3DC
+	斗士 & 猎人装备贴图	data\Character\DeathEater\DDS
+	
+	男斗士鞋子样式控制	data\Character\DeathEater\demf_foot.MLT
+	男斗士手套样式控制	data\Character\DeathEater\demf_hand.MLT
+	男斗士头盔样式控制	data\Character\DeathEater\demf_helmet.MLT
+	男斗士裤子样式控制	data\Character\DeathEater\demf_lower.MLT
+	男斗士衣服样式控制	data\Character\DeathEater\demf_upper.MLT
+	女斗士鞋子样式控制	data\Character\DeathEater\dewf_foot.MLT
+	女斗士手套样式控制	data\Character\DeathEater\dewf_hand.MLT
+	女斗士头盔样式控制	data\Character\DeathEater\dewf_helmet.MLT
+	女斗士裤子样式控制	data\Character\DeathEater\dewf_lower.MLT
+	女斗士衣服样式控制	data\Character\DeathEater\dewf_upper.MLT
+	
+
+	男猎人鞋子样式控制	data\Character\DeathEater\demr_foot.MLT
+	男猎人手套样式控制	data\Character\DeathEater\demr_hand.MLT
+	男猎人头盔样式控制	data\Character\DeathEater\demr_helmet.MLT
+	男猎人裤子样式控制	data\Character\DeathEater\demr_lower.MLT
+	男猎人衣服样式控制	data\Character\DeathEater\demr_upper.MLT
+	女猎人鞋子样式控制	data\Character\DeathEater\dewr_foot.MLT
+	女猎人手套样式控制	data\Character\DeathEater\dewr_hand.MLT
+	女猎人头盔样式控制	data\Character\DeathEater\dewr_helmet.MLT
+	女猎人裤子样式控制	data\Character\DeathEater\dewr_lower.MLT
+	女猎人衣服样式控制	data\Character\DeathEater\dewr_upper.MLT
+	
+	潜行者 & 祭祀装备		data\Character\Vile
+	潜行者 & 祭祀装备模型	data\Character\Vile\3DC
+	潜行者 & 祭祀装备贴图	data\Character\Vile\DDS
+	男祭司鞋子		data\Character\Vile\vimm_foot.MLT
+	男祭司手套		data\Character\Vile\vimm_hand.MLT
+	男祭司头盔		data\Character\Vile\vimm_helmet.MLT
+	男祭司裤子		data\Character\Vile\vimm_lower.MLT
+	男祭司衣服		data\Character\Vile\vimm_upper.MLT
+	女祭司鞋子		data\Character\Vile\viwm_foot.MLT
+	女祭司手套		data\Character\Vile\viwm_hand.MLT
+	女祭司头盔		data\Character\Vile\viwm_helmet.MLT
+	女祭司裤子		data\Character\Vile\viwm_lower.MLT
+	女祭司衣服		data\Character\Vile\viwm_upper.MLT
+	
+	男潜行者鞋子		data\Character\Vile\vimr_foot.MLT
+	男潜行者手套		data\Character\Vile\vimr_hand.MLT
+	男潜行者头盔		data\Character\Vile\vimr_helmet.MLT
+	男潜行者裤子		data\Character\Vile\vimr_lower.MLT
+	男潜行者衣服		data\Character\Vile\vimr_upper.MLT
+	女潜行者鞋子		data\Character\Vile\viwr_foot.MLT
+	女潜行者手套		data\Character\Vile\viwr_hand.MLT
+	女潜行者头盔		data\Character\Vile\viwr_helmet.MLT
+	女潜行者裤子		data\Character\Vile\viwr_lower.MLT
+	女潜行者衣服		data\Character\Vile\viwr_upper.MLT
+
+	
+	牧师 & 战士装备		data\Character\Human
+	牧师 & 战士装备模型	data\Character\Human\3DC	
+	牧师 & 战士装备贴图	data\Character\Human\DDS	
+	男战士鞋子		data\Character\Human\humf_foot.MLT	
+	男战士手套		data\Character\Human\humf_hand.MLT	
+	男战士头盔		data\Character\Human\humf_helmet.MLT	
+	男战士裤子		data\Character\Human\humf_lower.MLT	
+	男战士衣服		data\Character\Human\humf_upper.MLT
+	女战士鞋子		data\Character\Human\huwf_foot.MLT
+	女战士手套		data\Character\Human\huwf_hand.MLT
+	女战士头盔		data\Character\Human\huwf_helmet.MLT
+	女战士裤子		data\Character\Human\huwf_lower.MLT
+	女战士衣服		data\Character\Human\huwf_upper.MLT
+	
+	男牧师鞋子		data\Character\Human\humm_foot.MLT
+	男牧师手套		data\Character\Human\humm_hand.MLT
+	男牧师头盔		data\Character\Human\humm_helmet.MLT
+	男牧师裤子		data\Character\Human\humm_lower.MLT
+	男牧师衣服		data\Character\Human\humm_upper.MLT
+	女牧师鞋子		data\Character\Human\huwm_foot.MLT
+	女牧师手套		data\Character\Human\huwm_hand.MLT
+	女牧师头盔		data\Character\Human\huwm_helmet.MLT
+	女牧师裤子		data\Character\Human\huwm_lower.MLT
+	女牧师衣服		data\Character\Human\huwm_upper.MLT
+	
+	魔法师 & 弓箭手装备	data\Character\Elf
+	魔法师 & 弓箭手装备模型	data\Character\Elf\3DC	
+	魔法师 & 弓箭手装备贴图	data\Character\Elf\DDS	
+	男魔法师鞋子样式控制	data\Character\Elf\elmm_foot.MLT	
+	男魔法师手套样式控制	data\Character\Elf\elmm_hand.MLT	
+	男魔法师头盔样式控制	data\Character\Elf\elmm_helmet.MLT	
+	男魔法师裤子样式控制	data\Character\Elf\elmm_lower.MLT	
+	男魔法师衣服样式控制	data\Character\Elf\elmm_upper.MLT
+	女魔法师鞋子样式控制	data\Character\Elf\elwm_foot.MLT
+	女魔法师手套样式控制	data\Character\Elf\elwm_hand.MLT
+	女魔法师头盔样式控制	data\Character\Elf\elwm_helmet.MLT
+	女魔法师裤子样式控制	data\Character\Elf\elwm_lower.MLT
+	女魔法师衣服样式控制	data\Character\Elf\elwm_upper.MLT
+	
+	男弓箭手鞋子样式控制	data\Character\Elf\elmr_foot.MLT
+	男弓箭手手套样式控制	data\Character\Elf\elmr_hand.MLT
+	男弓箭手头盔样式控制	data\Character\Elf\elmr_helmet.MLT
+	男弓箭手裤子样式控制	data\Character\Elf\elmr_lower.MLT
+	男弓箭手衣服样式控制	data\Character\Elf\elmr_upper.MLT
+	女弓箭手鞋子样式控制	data\Character\Elf\elwr_foot.MLT
+	女弓箭手手套样式控制	data\Character\Elf\elwr_hand.MLT
+	女弓箭手头盔样式控制	data\Character\Elf\elwr_helmet.MLT
+	女弓箭手裤子样式控制	data\Character\Elf\elwr_lower.MLT
+	女弓箭手衣服样式控制	data\Character\Elf\elwr_upper.MLT
+
+
+
+	
+
+
+
+
+鼠标			data\Cursor
+光效图元		data\Effect
+	强化光效	data\Effect\weapon.seff
+图元			Data\Entity
+	建筑物贴图	data\Entity\Texture
+
+
+
+	角色技能		Data\interface\skill.tga
+	角色创建		Data\interface\create.tga
+	角色选择面板		Data\interface\character_select.tga
+	角色选择按钮		Data\interface\character_select_button2.tga
+	角色创建性别选择按钮	create_sex_button.tga
+	角色创建种族选择按钮	create_race_button.tga
+	角色创建模式选择按钮	create_mode_button.tga	
+	角色创建职业选择按钮	create_job_button.tga
+	创建角色		create.tga
+	角色属性(状态)		Data\interface\stats_off.tga(关闭属性分配)
+	角色属性(状态)		Data\interface\stats_on.tga(打开属性分配)
+	图标			data\interface\icon
+		装备图标		Data\interface\icon\16.dds	对应物品组号，当满格会增加100  为 116.dds 图标号为101开始
+
+		物品图标1		Data\interface\icon\icon_somo.dds
+		商城图标2		Data\interface\icon\icon_somo2.dds
+		102物品图标3		Data\interface\icon\icon_somo3.dds
+		宝石图标		Data\interface\icon\icon_rapis.dds
+		
+	
+	光明-阵营选择		Data\interface\select_country2.tga
+	愤怒-阵营选择		Data\interface\select_country3.tga
+	石头合成		Data\interface\rapis.tga
+	强化			Data\interface\rapisian.tga
+	商店			Data\interface\market.tga
+	大厅服务信息		Data\interface\guild_manager_service_info.tga
+	行会大厅积分信息	Data\interface\guild_manager_point.tga
+	行会目录		Data\interface\guild_manager_list.tga
+	行会等级信息		Data\interface\guild_manager_grede_info.tga
+	购买行会大厅		Data\interface\guild_manager_buy_house.tga
+	拍卖板			Data\interface\auction_progress.tga	
+				Data\interface\auction_objectsearch.tga
+				Data\interface\auction_interest_list.tga
+				Data\interface\auction_completio.tga
+	服务器选择列表		Data\interface\login_server.tga
+	按钮-确认		change_decision_button.tga
+				change_submit_button.tga
+				ok_button.tga
+	按钮-取消		cancel_button.tga
+	按钮-开始游戏		character_select_start.tga
+	按钮-购买微章		emblem_button2.tga
+	按钮-添加屏蔽		friend_cut_button.tga
+	按钮-解除屏蔽		friend_cut_button2.tga
+	按钮-添加好友		friend_find_button.tga
+	按钮-移动		gamble_button.tga
+				gatekeeper_button.tga
+	按钮-查看申请		gatekeeper_button.tga
+	按钮-公会管理		guild_manage_button.tga
+	按钮-道具使用		message_button3.tga
+	按钮-队长复活		message_button2.tga
+	按钮-复活		message_button.tga
+	按钮-收到的礼物		ins_market_store_button.tga
+	按钮-缴纳伊币		guild_manager_point_button.tga
+	按钮-查看公会信息	guild_message_button.tga
+	按钮-返回游戏		option_main_button2.tga
+	按钮-基本设置		option_reset_button.tga
+	按钮-查找		option_search_button.tga
+	按钮-开设商店		p_market_button.tga
+	按钮-强化		repair_button4.tga
+	按钮-合成/取出		repair_button3.tga
+	按钮-修理武器		rapis_button2.tga
+	按钮-接收		quest_take_button.tga
+	按钮-放弃任务		quest_button.tg
+	按钮-组队邀请		party_find_button4.tga
+	按钮-发送悄悄话		party_find_button3.tga
+	按钮-登记寻找组队/NO	party_find_button2.tga
+	按钮-登陆寻找组队	party_find_button1.tga
+	
+	按钮-输入		auction_tender_enter_button.tga
+	按钮-搜索		auction_buy_search_botton.tga
+	按钮-保存坐标		way_button.tga
+	按钮-领取奖品		reward_button.tga
+	按钮-增加/减少		emblem_slect_arrow.tga
+	按钮- +/-		main_slot_plus.tga
+	按钮-方向下		option_graphic_resol_2.tga
+				option_graphic_resol.tga
+				
+	搜索好友-等级差距	party_find_sort_level.tga
+	搜索好友-职业		party_find_sort_job.tga
+	
+	对勾			quest_alarm.tga
+	滚动条			scrollbar.tga
+	
+	行会-NO			guild_sort_no.tga
+				guild_manager_sort_num.tga
+				guild_wait_no.tga
+				guild_sort_num.tga
+	行会-名称		guild_sort_name.tga
+				guild_wait_name.tga
+	行会-LV			guild_sort_lv.tga
+				guild_wait_lv.tga
+	行会-职业		guild_sort_job.tga
+				guild_wait_job.tga
+	行会-状态		guild_sort_on.tga
+	行会-等级		guild_sort_grade.tga
+	行会-排名		guild_manager_sort_ranking.tga
+	行会-公会伊币		guild_manager_sort_point.tga
+	行会-公会名称		guild_manager_sort_name.tga
+	行会-会长名称		guild_manager_sort_master.tga
+	怪物属性图标		enemy_elemental.tga
+	
+	
+	
+	
+	雷达小地图		Data\interface\main_map.tga
+	小地图目录		Data\interface\MiniMap
+	愤怒图一	Data\interface\2.tga
+	决斗		Data\interface\1on1_battle.tga	
+	游戏忠告	Data\interface\advice.bmp	
+	奖品发放	Data\interface\bank.tga	
+	交易		Data\interface\change.tga
+	输入金币	Data\interface\change_item.tga	
+			Data\interface\change_money.tga
+	聊天模式选择	Data\interface\chat_config1.tga	
+	聊天内容屏蔽	Data\interface\chat_config2.tga	
+	战功奖励	Data\interface\combat.tga	
+	
+	好友		Data\interface\friend.tga
+	黑名单		Data\interface\friend_cut.tga
+	传送员		Data\interface\gatekeeper.tga
+	战功图标	Data\interface\grade1.tga	
+	公会		Data\interface\Guild.tga
+	商城		Data\interface\ins_market.tga
+	物品栏		Data\interface\inven.tga
+	登陆窗口	Data\interface\login.tga	
+	读图进度条框	Data\interface\loadbar_bg.tga
+	进度条光影	Data\interface\loadbar_light.tga
+	进度条颜色	Data\interface\loadbar.tga
+	选择服务器	Data\interface\login_server.tga	
+	底部栏		Data\interface\main_bottom.tga
+			Data\interface\main_bottom8.tga
+	经验条与女神条	Data\interface\main_bottom_bar.tga
+			Data\interface\main_bottom12.tga
+	右下角工具栏	Data\interface\main_bottom_button12.tga	
+			Data\interface\main_bottom_button.tga
+	
+	1横技能栏	Data\interface\main_slot_1.tga	
+	2竖技能栏	Data\interface\main_slot_2.tga	
+	3横技能栏	Data\interface\main_slot_3.tga	
+	4竖技能栏	Data\interface\main_slot_4.tga	
+	个人头像	Data\interface\main_stats_bar_bg.tga	
+	商店		Data\interface\market.tga
+	公告		Data\interface\notice.tga
+	光通图标	Data\interface\opticlogo.bmp	
+	画面选项	Data\interface\option_graphic.tga
+	选项		option_main.tga
+	声音选项	Data\interface\option_sound.tga	
+	用户选项	Data\interface\option_user.tga		
+	快捷键设置	Data\interface\option_key.tga	
+	追加快捷键设置	Data\interface\option_plus_key.tga	
+	个人商店	Data\interface\p_market.tga	
+	寻找组队	Data\interface\party_find.tga	
+	职业图标	Data\interface\party_icon.tga	
+	任务		Data\interface\quest.tga
+	任务缩略窗口	Data\interface\quest_mini.tga	
+	石头合成	Data\interface\rapis.tga	
+	武器强化	Data\interface\rapisian.tga	
+	装备合成	Data\interface\Remake1.tga	
+	武器改造	Data\interface\Remake3.tga	
+	武器修理	Data\interface\repair.tga	
+	光明阵营选择	Data\interface\select_country2.tga	
+	愤怒阵营选择	Data\interface\select_country3.tga	
+	外型变更	Data\interface\shape_change.tga	
+	技能框		Data\interface\skill.tga
+	游戏初始第1画面	Data\interface\sonovlogo.bmp	
+
+	仓库		Data\interface\store.tga
+			Data\interface\store240.tga
+	基本动作	Data\interface\sub.tga	
+	任务对话	Data\interface\talk1_bg.tga	
+	组团		Data\interface\union_party.tga
+	道标记录	Data\interface\waypoint.tga	
+
+
+	
+	人物血黄蓝	data\interface\main_stats_bar.tga
+	怪物血		data\interface\enemy_bar.tga
+	人物属性血黄蓝	data\interface\stats_on_graph.tga
+	伤害数字	data\interface\count.tga
+人物选择转身预览	data\interface\character_navi.tga
+人物选择转身预览背景	data\interface\character_navi_bg.tga
+
+物品			data\item
+	物品列表	data\item\Item.SData
+	物品模型目录	Data\Item\3DO
+	物品贴图目录	Data\Item\DDS
+	物品代码组号1		Data\Item\01.ITM	
+	物品代码组号2		Data\Item\02.ITM	
+	物品代码组号3		Data\Item\03.ITM	
+	物品代码组号4		Data\Item\04.ITM	
+	物品代码组号5		Data\Item\05.ITM	
+	物品代码组号6		Data\Item\06.ITM	
+	物品代码组号7		Data\Item\07.ITM	
+	物品代码组号8		Data\Item\08.ITM	
+	物品代码组号9		Data\Item\09.ITM	
+	物品代码组号10		Data\Item\10.ITM
+	物品代码组号11		Data\Item\11.ITM
+	物品代码组号12		Data\Item\12.ITM
+	物品代码组号13		Data\Item\13.ITM
+	物品代码组号14		Data\Item\14.ITM
+	物品代码组号15		Data\Item\15.ITM
+	物品代码组号19		Data\Item\19.ITM
+	物品代码组号34		Data\Item\34.ITM
+怪物			data\Monster
+	怪物列表	data\Monster\Monster.SData
+	怪物技能	data\Monster\NpcSkill.SData	对应数据库ps_gamedefs.dbo.skills表中第二部分
+	怪物模型	Data\Monster\monster.MON
+NPC			Data\Npc
+	NPC列表		Data\Npc\NpcQuest.SData
+声音			data\Sound
+	环境音效	Data\Sound\back
+	NPC对话		Data\Sound\Ment
+	游戏音乐	Data\Sound\Music
+地面			Data\Terrain
+地图			Data\world
+				Data\world\*.svmap		只控制怪物坐标、传送门、NPC坐标、复活点，不控制地图显示
+				Data\world\*.txt		控制地图传送门文字显示
+				Data\world\*.wld		地图环境元素
+小地图				Data\interface\MiniMap
+登陆界面		Data\world\login.wld
+			Data\world\login3.wld
+阵营选择(光明)		Data\world\select_a.wld
+阵营选择(愤怒)		Data\world\select_b.wld
+data\Entity\Shape\F_B4_Gate01.SMOD	伊利斯门口
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
