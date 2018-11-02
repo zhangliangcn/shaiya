@@ -1,4 +1,7 @@
-update Ps_gameDefs.dbo.items set reqlevel =1 where itemid='17020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='17020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='18020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='20020'
+update Ps_gameDefs.dbo.items set reqlevel =1，buy=0,sell=0 where itemid='21020'
 /***************************************
 /**************战士骑士新手装备*****************
 /***************************************
