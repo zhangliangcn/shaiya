@@ -310,11 +310,7 @@ Count			物品最大叠加数
     
     
     
-/************************************************************
-/************************************************************
-/**************【mobs 字段释义】*******************
-/************************************************************
-/************************************************************    
+c   
     RowID	序列
 MobID	怪物代码
 MobName	怪物名称
@@ -418,4 +414,108 @@ Attackspecial3
 Attackok3	启用攻击
 		1：是
 		0：否	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+row			序列
+UserID			账号
+UserUID			账号序列
+CharID			角色序列
+CharName		角色名
+CharLevel		角色等级
+CharExp			角色经验
+MapID			地图代码
+PosX			X坐标
+PosY			Z坐标
+PosZ			Y坐标
+ActionTime		执行时间
+ActionType		执行类型
+				103：杀人
+				107：上线
+				108：离线
+				112：
+				113：点卡变更
+				114: 卖出
+				213：洗属性
+				212：强化
+Value1			
+Value2
+Value3
+Value4
+Value5
+Value6
+Value7
+Value8
+Value9
+Value10
+Text1				
+				ActionType=107,	玩家IP
+Text2
+Text3			力  敏  体  智  精  运  血  蓝  黄  强化
+			00  00  00  00  00  00  00  00  00  00
+			
+Text4			力  敏  体  智  精  运  血  蓝  黄  强化
+			00  00  00  00  00  00  00  00  00  00
+
+
+
+row			序列
+UserID			账号
+UserUID			账号序列
+CharID			角色序列
+CharName		角色名
+CharLevel		角色等级
+CharExp			角色经验
+MapID			地图代码
+PosX			X坐标
+PosY			Z坐标
+PosZ			Y坐标
+ActionTime		执行时间
+ActionType		执行类型
+				103：杀人
+				107：上线
+				108：离线
+				112：
+				113：点卡变更
+				114: 卖出
+				213：洗属性
+				212：强化
+Value1			
+Value2
+Value3
+Value4
+Value5
+Value6
+Value7
+Value8
+Value9
+Value10
+Text1				
+				ActionType=107,	玩家IP
+Text2
+Text3			力  敏  体  智  精  运  血  蓝  黄  强化
+			00  00  00  00  00  00  00  00  00  00
+			
+Text4			力  敏  体  智  精  运  血  蓝  黄  强化
+			00  00  00  00  00  00  00  00  00  00
+
+
 
