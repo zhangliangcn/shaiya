@@ -1,0 +1,106 @@
+
+/*******该存储过程缺陷为无法建立死亡号及困难号，游戏提示Data receving error********************************
+/****** 개체: 저장 프로시저 dbo.usp_Create_Char_R    스크립트 날짜: 2006-05-30 오후 12:53:23 ******/
+
+CREATE  Proc usp_Create_Char_R
+
+@ServerID tinyint,
+@UserID varchar(12),
+@UserUID int,
+@CharName varchar(50) ,
+
+@Slot Tinyint,
+@Family Tinyint,
+@Grow Tinyint,
+@Hair Tinyint,
+@Face Tinyint,
+@Size Tinyint,
+@Job Tinyint,
+@Sex Tinyint,
+@Level Smallint,
+@Statpoint Smallint,
+@Skillpoint Smallint,
+@Str Smallint,
+@Dex Smallint,
+@Rec Smallint,
+@Int Smallint,
+@Luc Smallint,
+@Wis Smallint,
+@Hp Smallint,
+@Mp Smallint,
+@Sp Smallint,
+@Map Smallint,
+@Dir Smallint,
+@Exp Int,
+@Money Int,
+@Posx Real,
+@Posy Real,
+@Posz Real,
+@Hg Smallint,
+@Vg Smallint,
+@Cg Tinyint,
+@Og Tinyint,
+@Ig Tinyint,
+
+
+/* 여기까지 인자값 주어져야 함 */
+
+/* SP 내부 참조용 변수 */
+
+@CharID int = 0,
+@NameCnt tinyint = 0
+
+AS
+
+SET NOCOUNT ON
+
+DECLARE @Ret int
+
+SET @CharName = LTRIM(RTRIM(@CharName))
+SET @SkillPoint = 5
+SET @Ret = 0
+
+
+
+SET @NameCnt = (SELECT ISNULL(COUNT(*),0) FROM Chars WHERE CharName=@CharName AND Del=0)
+
+IF(@NameCnt <> 0)
+BEGIN
+	RETURN -2
+END
+ELSE
+BEGIN
+	IF EXISTS ( SELECT CharID FROM Chars WHERE CharName=@CharName AND Del = 1 AND [Level] >10 AND DeleteDate > DATEADD(dd, -7, GETDATE()) )
+	BEGIN
+		RETURN -2
+	END
+
+	BEGIN TRANSACTION
+
+	INSERT INTO Chars(ServerID,UserID, UserUID, CharName, Slot, Family, Grow, 
+	Hair, Face, [Size], Job, Sex, [Level], StatPoint, SkillPoint, 
+	[Str], Dex, Rec, [Int], Luc, Wis, HP, MP, SP, Map, Dir, [Exp], [Money], 
+	PosX, PosY, Posz, Hg, Vg, Cg, Og, Ig, RenameCnt, RemainTime)
+
+	VALUES(@ServerID,@UserID, @UserUID, @CharName, @Slot, @Family, @Grow, 
+	@Hair, @Face, @Size, @Job, @Sex, @Level, @StatPoint, @SkillPoint, 
+	@Str, @Dex, @Rec, @Int, @Luc, @Wis, @HP, @MP, @SP, @Map, @Dir, @Exp, @Money, 
+	@PosX, @PosY, @Posz, @Hg, @Vg, @Cg, @Og, @Ig, 0, 0)
+
+	IF( @@ERROR=0 )
+	BEGIN
+		COMMIT TRANSACTION
+	END
+	ELSE
+	BEGIN
+		ROLLBACK TRANSACTION
+		RETURN -1
+	END
+
+	SET @CharID = IDENT_CURRENT('Chars')
+END
+
+RETURN @CharID
+
+SET NOCOUNT OFF
+GO
