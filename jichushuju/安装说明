@@ -98,6 +98,10 @@
 			exec sp_addlinkedserver 'PS_USERDB01','','SQLOLEDB','127.0.0.1'
 			exec sp_addlinkedsrvlogin 'PS_USERDB01','false',null,'sa','123456'
 			将连接服务器以下四个服务--属性全部改为true
+			3.1 安装扩展存储过程
+			111在MSSQL查询分析器里面执行下面代码，
+			111注意xp_crypt.dll真实路径及你是否有xp_crypt.dll此文件
+			111exec master..sp_addextendedproc 'Xp_crpty','c:\ShaiyaServer\xp_crpty.dll'
 		4. sql 配置完成
 神泣服务端的基础完成，生成快照方便以后调用
 完成
