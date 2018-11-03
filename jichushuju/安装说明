@@ -1,0 +1,456 @@
+神泣新手教程
+
+节1.系统的安装
+	
+	所需材料
+		1. vm
+		2. windows xp iso (MRX3F-47B9T-2487J-KWKMF-RPWBY)
+		3. office (excel 、access、word)
+		4. 解压软件、输入法等
+		
+		
+	1. 新建虚拟机
+		1. 自定义
+		2. 稍后安装操作系统 
+		3. win  xp 
+		4. 核心数量(推荐选择双核，sql 相关问题)
+		5. 内存，如果你内存够大 就使用2G,如果你内存小最少1G
+		6. 网络模式，有路由直接 使用网桥，如果 没有 可以 使用nat
+		7. 最少80G吧，现在硬盘都大，不差那么点，使用单个文件，方便移植
+		8. 自定义，去除无关硬件，USB这最好不要自动连接很麻烦的。至于 USB版本自己看吧
+		9.  插入系统 ISO，启动开始安装
+	
+	2. 系统安装
+		1. 分区 ，神泣服务器 二个就够了， 一个系统 一个服务端文件，如果自己回调真机，最后在多一个 备份盘
+		接下就是漫长的等待了，安装系统 还不算太慢。
+		2. xp 和 sql  是有版本问题的， 注意下载时看好版本
+			sql 版本下节会给出。
+		至于为什么用xp 不用 server 2003  或2008  是因为神泣工具的问题
+		3. 安装完成后，出来个向导直接 点取消。
+	
+	3. 配置系统
+		1. 安装vm tools
+			完整安装，vm版本兼容和移植问题
+		2. 重新分配盘符
+		3. 格式化分区
+		4. 打开显示扩展名
+		4. 关闭 安全提示、自动更新、系统还原、防火墙、屏保等无用功能
+		5. 设置本地连接为固定IP 为什么？ 服务器  这是服务器
+		6. 安装常用软件
+			vm 就爱出这问题 无法拖拽，重起一下 vm
+			1. 安装你常用的软件 比如输入法 压缩工具等
+			2. 安装 excel 等office 软件,用于 sql 数据导出导入后文件编辑
+	
+	4. 安装及配置IIS 
+		1. 插入win xp  iso镜像
+		2. 安装可选windows 组件 (也可在添加/删除程序里找到)
+		3. 勾选 iis服务，如果提示未找文件，可手动浏览镜像里的I386目录
+		4. 配置IIS,可在控制面板 管理工具里找到
+		5. 删除 IIS  里 无用的 文件
+		6. 设置主页文档,设置htt头类型
+		7. 配置文件类型主要用于 游戏的自动更新
+		8. 测试访问，局域网访问 IP : 192.168.4.222(测试访问成功)
+	5. 安装完成	
+		
+节2.sql 安装 sql server
+	所需材料 
+		1. Microsoft SQL Server 2005 Developer Edition(开机发者版)
+		
+启动 vm
+	1. 插入 sql server ISO镜像
+	2. 安装sql
+		1. 选择安装组件
+		必选
+			sql server database services
+			工作站组件、联机丛书和开发工具
+		可选，推荐选择，用于数据库的导入 导出
+			SQL Server Integration Service（SSIS）
+		
+		2. 使用系统账户
+		3. 使用混合验证模式
+		接下来就是 漫长的等待了，， 可长呢，等着吧
+		为了稳定性，就忍了吧，以后 不会出什么很奇怪的问题，更省心
+		
+		终于安完了。。。
+		
+	3. 配置sql server
+		1. 开发者版 默认是不对外网开放的，我们要设置一下
+		SQL Server 外围应用配置器-->
+		服务和连接的外围应用配置器-->
+		远程连接 -->
+		选择 本地连接和远程连接 -->完成
+		2. 至于服务可关可不关，但关键服务必须开启。 那就全开着吧。
+		3. 启动sql server
+			创建连接对象
+			执行以下语句。
+			if exists(select * 
+			from master..sysservers 
+			where isremote=1 and srvname='Game') 
+			begin
+			exec sp_dropserver 'Game','droplogins'
+			end
+			exec sp_addlinkedserver 'Game','','SQLOLEDB','127.0.0.1'
+			exec sp_addlinkedsrvlogin 'Game','false',null,'sa','123456'
+			exec sp_addlinkedserver 'PS_NCASH','','SQLOLEDB','127.0.0.1'
+			exec sp_addlinkedsrvlogin 'PS_NCASH','false',null,'sa','123456'
+			exec sp_addlinkedserver 'PS_USERDB','','SQLOLEDB','127.0.0.1'
+			exec sp_addlinkedsrvlogin 'PS_USERDB','false',null,'sa','123456'
+			exec sp_addlinkedserver 'PS_USERDB01','','SQLOLEDB','127.0.0.1'
+			exec sp_addlinkedsrvlogin 'PS_USERDB01','false',null,'sa','123456'
+			将连接服务器以下四个服务--属性全部改为true
+		4. sql 配置完成
+神泣服务端的基础完成，生成快照方便以后调用
+完成
+
+
+节3.安装神泣服务端
+
+	所需材料
+		1. 神泣服务端
+		2. 神泣客户端
+		3. 神泣登陆器
+		4. 神泣助手
+		5. 神泣GM管理工具
+		
+视频测试使用版本	
+	1.  本视频使用神泣9.0商业端测试
+	2.  本视频使用神泣9.0客户原端测试
+	
+
+	补充，
+		1. 由于第二节置完成sql server 没有重起，安装时会出现问题
+		2. 由于第一节没有删除系统搜索文件造成操作不便，删除后搜索 模式改经典
+	二个问题合并处理
+	启动vm	--> 重起  --> 进入安全模式
+	将搜索模式改经典-->完成
+	
+	
+	1. 安装服务端
+		1. 附加数据库
+			启动 sql server
+			数据库--> 右键 -->  附加 --> 添加
+		附加方式 也可以 用语句 附加
+		2. 分离数据库
+			选择要分享的库  -->  右键 -- 任务 --> 分享
+		
+		3. 语句附加数据库
+			exec sp_attach_db 语句
+	
+			exec sp_attach_db 库名, 库文件, 库日志 文件
+			文件必须为绝对路径
+		附加完成
+		
+		4. 安装服务端程序
+		
+			1. 执行 PSM_Client\PSM_ServiceMgr.exe
+				安装所有服务，并启动第一个
+				
+			2. 执行PSM_Server\PSMServer_ServiceMgr.exe
+				安装所有服务，并启动
+			
+			3. 执行 \PSM_Server\PSMServer_Mgr.exe	
+			
+			4. 更新服务端配置
+				1. 更新连接sql server sa 用户密码
+				2. 更新服务端外网连接IP
+			5. 更新服务端
+	
+			6. 启动服务端
+			
+			7. 注册游戏长号，
+			
+			8. 更改账号为GM模式
+				sql --> 库 PS_UserData --> 表Users_Master --> 列 status --> 值 16
+			
+			9. 配置登陆器
+				主要是updater.uif 文件连接服务器的信息
+				
+			10. 启动游戏
+				1. 将配置好登陆器放到游戏目录，执行 Updater.exe
+				
+				2. 由于 配置了自动更新，游戏检索更新版本
+				
+				3. 更改游戏版本
+					查看服务端的游戏版本号，网站根目录下
+					配置自动更新目录
+					服务端版本信息 wwwroot\shaiya\UpdateVersion.ini
+					设置当前版本150 对应更新文件wwwroot\shaiya\patch\*.patch也必须为150
+					2. 设置客户版本信息
+						1. 如果需要更新 ， 则客户版本号必须低于服务端版本
+						2. 如果不需要更新 那就高点吧
+					客户端版本信息 游戏目录\Version.ini
+					
+				4. 启动游戏
+					出错了。  看一下哪的事。
+					局域网能访问服务端， 游戏连接不上， 那应该是 updater.uif配置问题  看一下去
+					游戏 IP地址 写错了。 应该是192.168.4.222
+					重新生成
+					
+					启动成功，上游戏 看一下
+					测试 商城买物品掉线，考虑我这是商业端，不存在ps_game问题
+那就有可能 是服务的事了。看一下去					
+开始-->  运行  --> services.msc
+Distributed Transaction Coordinator  该服务没有启动。 改 自动 并启动
+
+重新上线测试
+
+到些 服务端架设完成。
+
+下节 自定义游戏设置
+
+
+节4.补丁包制作 、 在线更新、离线更新
+
+	以后教程将上传于 QQ群：298287509，其它方式将不在支持更新
+					
+		1. 补丁包制作 及在线更新
+			所需材料
+				1. 神泣助手
+				
+				1. 启动服务端 神泣助手 
+				
+					1.  神泣助手 --> 更新/ 列表管理
+						补丁目录-->即要制作的补丁目录 data\
+						将这个文本更新到客户端
+					2. 生成补丁目录
+						将文件 更新到游戏的根目录 即data 下
+					3. 将生成的文件压缩为.zip格式
+					
+					4. 将压缩后的文件改名为补丁文件格式 并放到服务IIS的补丁目录下
+						补丁命名规则 
+							psxxx.patch  
+							xxx 为版本号
+					5. 修改更新服务端版本文件
+					
+					6. 完成 开始更新
+					
+					7. 更新完成后 客户端版本 自动变更为151
+					
+				
+		2. 离线更新，
+			离线更新的文件一般比较大，因为文件太大 造成服务器负载过高，所以一般大文件 都是离线更新
+			
+			1. 制作补丁的文件与一步相同，
+			2. 离线更新不需要将补丁打包  ，直接 将打包好的补丁 放到游戏客户目录
+				update.saf  与  update.sah
+				
+			3. 服务端也需要设置版本号。
+				1. 新建一个zip格式压缩包，或压缩一个空的文件都可以 
+				
+				2. 更新文件名 为 psxxx.patch
+				
+				3. 修改UpdateVersion.ini文件的 版本号
+				
+				4. 直接运行游戏更新
+					更新完成后客户端自动会删除 update.saf  与  update.sah
+					当前游戏版本为151
+					文件已删除， 看一下 客户端的更新版本号
+					已变更为150
+				完成 。
+
+		以后教程将上传于 QQ群：298287509，其它方式将不在支持更新
+
+节5. sql 的相当基础知识
+
+	注： 本商端9.0 与教程说明将上传于 QQ群：298287509，其它方式将不在支持更新
+	
+		1. sql 的基本语法
+			1. 查询语句
+				语法：
+					select 列 from  表 where  条件
+				示例：查询怪物  大于等级30级 小于60级的怪物
+					select * from PS_GameDefs.dbo.Mobs where [level]>30 and [level]<60
+					注解：
+						*	通配符，即所有列
+						PS_GameDefs.dbo.Mobs	库PS_GameDefs   表 mobs  ，即PS_GameDefs库下面的  mobs表
+						[level]		level 为level 列, []  因level 为sql 的关键字 加入 []后表示列
+						
+						>	大于
+						< 	小于
+						and 	即多条件查询  
+						[level]>30 and [level]<60  	大于等级30级 小于60级的怪物
+						
+			2. 修改/更新语句
+				语法：
+					update 表 set 列 = 值 where 条件
+				示例：修改 mobid=1的行  即 小废墟豺狼  的等级
+					原等级 [level]=38 修改为 [level]=60
+					修改完后查询
+					
+					update PS_GameDefs.dbo.Mobs set [level]=60 where mobid=1
+					select * from pS_GameDefs.dbo.Mobs  where mobid=1
+					
+					第一句为 修改语句 ，即  更新表 PS_GameDefs.dbo.Mobs  设置列 [level] = 值(60) 条件 mobid=1
+					第二名为 查询语句, 即 查询 mobid=1 的所有列
+			3. 插入语句
+				语法：
+					insert into 表名(列1，列2) values(值1，值2)
+				示例：插入经验表 expdefs表 
+					insert into PS_GameDefs.dbo.ExpDefs([level],grow,[exp]) values(71,1,7111)
+					注：
+						插入 表 PS_GameDefs.dbo.ExpDefs
+						     列 [level],grow,[exp]
+						     值 71,1,7111
+						expdefs 表实际列为 rowid,level,grow,exp
+							为什么只插入三列？ 因为 rowid为自动增长，
+						手动写入值测试，rowid自动补充
+			3. 删除语句
+				语法：
+					delete from 表 where 条件
+				示例： 删除插入的数据
+					delete from PS_GameDefs.dbo.ExpDefs where rowid>=281
+					注：
+						删除 表 PS_GameDefs.dbo.ExpDefs 条件 rowid列 大于等于281的行
+		2. t-sql 的基础知识
+
+				1. 声明变量
+					语法：
+						declare @变量名 数据类型		//声明局部变量
+				
+				2. 变量赋值
+					语法：
+						set @变量值 = 值
+
+				示例：查询等级为40的怪物
+
+节6. 添加地图
+		所需材料：
+			1. 超级资源解包
+			2. 神泣助手
+			3. 兼容13.0补丁包
+			4. 13.0客户端
+			
+			
+		1. 加入 74-79地图
+		
+		2. 加入 80以后的地图
+		
+节7. 添加怪物
+
+		所需材料：
+			1. 10.0客户
+			2. 加解密工具
+			3. 10.0数据库
+			
+			
+			
+			insert into PS_GameDefs.dbo.Mobs
+				select 
+				MobID,
+				MobName,
+				[Level],
+				Exp,
+				AI,
+				Money1,
+				Money2,
+				QuestItemID,
+				HP,
+				SP,
+				MP,
+				Dex,
+				Wis,
+				Luc,
+				Day,
+				Size,
+				Attrib,
+				Defense,
+				Magic,
+				ResistState1,
+				ResistState2,
+				ResistState3,
+				ResistState4,
+				ResistState5,
+				ResistState6,
+				ResistState7,
+				ResistState8,
+				ResistState9,
+				ResistState10,
+				ResistState11,
+				ResistState12,
+				ResistState13,
+				ResistState14,
+				ResistState15,
+				ResistSkill1,
+				ResistSkill2,
+				ResistSkill3,
+				ResistSkill4,
+				ResistSkill5,
+				ResistSkill6,
+				NormalTime,
+				NormalStep,
+				ChaseTime,
+				ChaseStep,
+				ChaseRange,
+				AttackType1,
+				AttackTime1,
+				Attackrange1,
+				Attack1,
+				Attackplus1,
+				Attackattrib1,
+				Attackspecial1,
+				Attackok1,
+				Attacktype2,
+				Attacktime2,
+				Attackrange2,
+				Attack2,
+				Attackplus2,
+				Attackattrib2,
+				Attackspecial2,
+				Attackok2,
+				Attacktype3,
+				Attacktime3,
+				Attackrange3,
+				Attack3,
+				Attackplus3,
+				Attackattrib3,
+				Attackspecial3,
+				Attackok3
+
+				from  PS_GameDefs1.dbo.Mobs   where mobid>3000
+
+				
+节8. 客户端与数据库物品表的同步原理
+
+	所需材料
+		1. 资源解包
+		2. 神泣助手
+		3. 加解密
+		4. excel ， SSIS
+		
+		
+		
+	1. 提取客户端的物品文件
+	
+	2. 生成客户端物品表 item.xls文件
+	
+	3. 优化，  删除空行
+		excel --> {end} --> [方向键下] --索引到文件的结尾 ，
+		
+		
+	4. 导入到数据库
+	
+	5. 获取数据库 和 客户端表 的  字段
+	
+	6. 合并字段
+	
+	7. 插入客户端的表数据到数据库表
+	
+			
+			
+			
+			
+			
+						
+						
+				
+					
+					
+					
+					
+					
+					
+					
+					
+		
+	
+	
