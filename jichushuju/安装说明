@@ -102,6 +102,21 @@
 			111在MSSQL查询分析器里面执行下面代码，
 			111注意xp_crypt.dll真实路径及你是否有xp_crypt.dll此文件
 			111exec master..sp_addextendedproc 'Xp_crpty','c:\ShaiyaServer\xp_crpty.dll'
+			
+			3.2 附加数据库
+			EXEC SP_ATTACH_DB OMG_GameWeb, 'D:\data\OMG_GameWeb_Data.MDF','D:\data\OMG_GameWeb_Log.LDF'
+			EXEC SP_ATTACH_DB PS_Billing, 'D:\data\PS_Billing_Data.MDF','D:\data\PS_Billing_Log.LDF'
+			EXEC SP_ATTACH_DB PS_ChatLog, 'D:\data\PS_ChatLog_Data.MDF','D:\data\PS_ChatLog_Log.LDF'
+			EXEC SP_ATTACH_DB PS_GameData, 'D:\data\PS_GameData_Data.MDF','D:\data\PS_GameData_Log.LDF'
+			EXEC SP_ATTACH_DB PS_GameDefs, 'D:\data\PS_GameDefs.mdf','D:\data\PS_GameDefs.ldf'
+			EXEC SP_ATTACH_DB PS_GameLog, 'D:\data\PS_GameLog_Data.MDF','D:\data\PS_GameLog_Log.LDF'
+			EXEC SP_ATTACH_DB PS_GMTool, 'D:\data\PS_GMTool_Data.MDF','D:\data\PS_GMTool_Log.LDF'
+			EXEC SP_ATTACH_DB PS_Monitor, 'D:\data\PS_Monitor_Data.MDF','D:\data\PS_Monitor_Log.LDF'
+			EXEC SP_ATTACH_DB PS_StatData, 'D:\data\PS_StatData_Data.MDF','D:\data\PS_StatData_Log.LDF'
+			EXEC SP_ATTACH_DB PS_Statics, 'D:\data\PS_Statics_Data.MDF','D:\data\PS_Statics_Log.LDF'
+			EXEC SP_ATTACH_DB PS_UserData, 'D:\data\PS_UserData_Data.MDF','D:\data\PS_UserData_Log.LDF'
+			
+			
 		4. sql 配置完成
 神泣服务端的基础完成，生成快照方便以后调用
 完成
